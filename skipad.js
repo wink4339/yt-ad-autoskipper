@@ -145,11 +145,8 @@
     if (typeof el.fireEvent === 'function') {
       el.fireEvent('on' + etype);
     } else if (typeof el.dispatchEvent === 'function') {
-      var evObj = new MouseEvent('click', {
-        bubbles: true,
-        cancelable: false,
-        composed: true
-      });
+      const evObj = document.createEvent("Events");
+      evObj.initEvent(etype, true, false);
       el.dispatchEvent(evObj);
     }
   }
